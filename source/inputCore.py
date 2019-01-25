@@ -436,7 +436,9 @@ class InputManager(baseObject.AutoPropertyObject):
 			gesture.wasInSayAll=True
 
 		speechEffect = gesture.speechEffectWhenExecuted
-		if speechEffect == gesture.SPEECHEFFECT_CANCEL:
+		stopSpeech = getattr(script, "stopSpeech", True)
+		if not stopSpeech and config.conf["braille"]["speechInterruptForScroll"]: pass
+		elif speechEffect == gesture.SPEECHEFFECT_CANCEL:
 			queueHandler.queueFunction(queueHandler.eventQueue, speech.cancelSpeech)
 		elif speechEffect in (gesture.SPEECHEFFECT_PAUSE, gesture.SPEECHEFFECT_RESUME):
 			queueHandler.queueFunction(queueHandler.eventQueue, speech.pauseSpeech, speechEffect == gesture.SPEECHEFFECT_PAUSE)

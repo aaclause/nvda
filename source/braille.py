@@ -34,6 +34,8 @@ import extensionPoints
 import hwPortUtils
 import bdDetect
 import winUser
+import speech
+import queueHandler
 
 roleLabels = {
 	# Translators: Displayed in braille for an object which is a
@@ -1069,6 +1071,8 @@ class TextInfoRegion(Region):
 				return
 		dest.collapse()
 		self._setCursor(dest)
+		if config.conf["braille"]["speechInterruptForScroll"]:
+			queueHandler.queueFunction(queueHandler.eventQueue, speech.cancelSpeech)
 
 	def previousLine(self, start=False):
 		dest = self._readingInfo.copy()
@@ -1092,6 +1096,8 @@ class TextInfoRegion(Region):
 				return
 		dest.collapse()
 		self._setCursor(dest)
+		if config.conf["braille"]["speechInterruptForScroll"]:
+			queueHandler.queueFunction(queueHandler.eventQueue, speech.cancelSpeech)
 
 class CursorManagerRegion(TextInfoRegion):
 

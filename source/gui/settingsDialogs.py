@@ -2416,6 +2416,12 @@ class BrailleSettingsSubPanel(SettingsPanel):
 		except:
 			index=0
 		self.focusContextPresentationList.SetSelection(index)
+
+		# Translators: The label for a setting in braille settings to do not interrupt speech when scrolling
+		speechInterruptForScrollText = _("Do not interrupt speech when scrolling on same line")
+		self.speechInterruptForScrollCheckBox = sHelper.addItem(wx.CheckBox(self, label=speechInterruptForScrollText))
+		self.speechInterruptForScrollCheckBox.Value = config.conf["braille"]["speechInterruptForScroll"]
+
 		if gui._isDebug():
 			log.debug("Finished making settings, now at %.2f seconds from start"%(time.time() - startTime))
 
@@ -2440,6 +2446,7 @@ class BrailleSettingsSubPanel(SettingsPanel):
 		config.conf["braille"]["readByParagraph"] = self.readByParagraphCheckBox.Value
 		config.conf["braille"]["wordWrap"] = self.wordWrapCheckBox.Value
 		config.conf["braille"]["focusContextPresentation"] = self.focusContextPresentationValues[self.focusContextPresentationList.GetSelection()]
+		config.conf["braille"]["speechInterruptForScroll"] = self.speechInterruptForScrollCheckBox.Value
 
 	def onShowCursorChange(self, evt):
 		self.cursorBlinkCheckBox.Enable(evt.IsChecked())

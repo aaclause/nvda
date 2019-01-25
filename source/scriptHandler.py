@@ -238,7 +238,8 @@ def script(
 	gestures=None,
 	canPropagate=False,
 	bypassInputHelp=False,
-	resumeSayAllMode=None
+	resumeSayAllMode=None,
+	stopSpeech = True
 ):
 	"""Define metadata for a script.
 	This function is to be used as a decorator to set metadata used by the scripting system and gesture editor.
@@ -285,6 +286,7 @@ def script(
 			decoratedScript.gestures = gestures
 		decoratedScript.canPropagate = canPropagate
 		decoratedScript.bypassInputHelp = bypassInputHelp
+		decoratedScript.stopSpeech = stopSpeech
 		if resumeSayAllMode is not None:
 			decoratedScript.resumeSayAllMode = resumeSayAllMode
 		return decoratedScript

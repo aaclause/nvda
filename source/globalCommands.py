@@ -1930,6 +1930,7 @@ class GlobalCommands(ScriptableObject):
 	script_braille_scrollBack.__doc__ = _("Scrolls the braille display back")
 	script_braille_scrollBack.bypassInputHelp = True
 	script_braille_scrollBack.category=SCRCAT_BRAILLE
+	script_braille_scrollBack.stopSpeech = False
 
 	def script_braille_scrollForward(self, gesture):
 		braille.handler.scrollForward()
@@ -1937,6 +1938,7 @@ class GlobalCommands(ScriptableObject):
 	script_braille_scrollForward.__doc__ = _("Scrolls the braille display forward")
 	script_braille_scrollForward.bypassInputHelp = True
 	script_braille_scrollForward.category=SCRCAT_BRAILLE
+	script_braille_scrollForward.stopSpeech = False
 
 	def script_braille_routeTo(self, gesture):
 		braille.handler.routeTo(gesture.routingIndex)
